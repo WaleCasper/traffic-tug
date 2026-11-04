@@ -1,0 +1,21 @@
+# 安裝:把 USERNAME 換成實際帳號後
+#   sudo cp deploy/traffic-tug.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now traffic-tug
+[Unit]
+Description=Traffic Tug & Heist game server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=USERNAME
+WorkingDirectory=/home/USERNAME/games/traffic-tug
+EnvironmentFile=/home/USERNAME/games/traffic-tug/.env
+ExecStart=/home/USERNAME/games/traffic-tug/.venv/bin/python -m app
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

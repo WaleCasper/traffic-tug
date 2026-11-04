@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>管理 · 網路流量大作戰</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <main class="admin">
+    <h1>主持人控制台</h1>
+
+    <section>
+      <h2>管理密碼</h2>
+      <div class="row">
+        <input type="password" id="token" placeholder="ADMIN_TOKEN" autocomplete="off" style="flex:1;min-width:200px">
+        <button class="btn" id="saveToken">記住(僅此分頁)</button>
+        <a class="btn" href="/board" target="_blank" style="text-decoration:none">開啟投影畫面 ↗</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>兩台伺服器狀態</h2>
+      <table>
+        <thead><tr><th>隊伍</th><th>連線</th><th>遊戲</th><th>階段</th><th>剩餘</th><th>玩家</th><th>即時 Mbps</th><th>即時 pps</th><th>回合流量</th><th>回合封包</th><th>資料來源</th></tr></thead>
+        <tbody id="status"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>回合控制(同時送到 A、B 兩台)</h2>
+      <div class="row" style="margin-bottom:10px">
+        <button class="btn" data-act="select" data-game="tug">選擇:🪢 流量拔河</button>
+        <button class="btn" data-act="select" data-game="heist">選擇:💎 偷鑽石</button>
+      </div>
+      <div class="row">
+        <button class="btn primary" data-act="start">▶ 開始(倒數 3 秒)</button>
+        <button class="btn" data-act="stop">■ 提前結束</button>
+        <button class="btn warn" data-act="reveal">↺ 拔河反轉:公布封包數</button>
+        <button class="btn danger" data-act="reset">重置本回合</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>遊戲參數</h2>
+      <p class="muted" style="margin-top:0;font-size:13px">從 A 讀取後,按「套用到兩台」同時更新。重啟服務會回到 .env 的設定。整個遊戲目標低於 10 Mbps。</p>
+      <div class="params" id="params"></div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn" id="loadParams">從 A 讀取</button>
+        <button class="btn primary" id="applyParams">套用到兩台</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>紀錄</h2>
+      <div class="log" id="log"></div>
+    </section>
+  </main>
+  <script type="module" src="/static/js/admin.js"></script>
+</body>
+</html>

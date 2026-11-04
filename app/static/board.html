@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>投影比分 · 網路流量大作戰</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <div class="zbx hidden" id="zbx"></div>
+  <div class="board">
+    <header class="board-head">
+      <div>
+        <h1 id="title">網路流量大作戰</h1>
+        <div class="sub" id="sub">掃描 QR Code 加入,選擇你的隊伍</div>
+      </div>
+      <div class="timer num" id="timer"></div>
+      <div class="join-box">
+        <div class="qr" id="qr"></div>
+        <div>
+          <div class="url" id="joinUrl"></div>
+          <div class="players num" id="players">A 0 人 · B 0 人</div>
+        </div>
+      </div>
+    </header>
+    <main class="board-main">
+      <div class="idle-hero" id="idle">
+        <h2>掃描右上角 QR Code</h2>
+        <p>選擇 A 隊或 B 隊,等待遊戲開始</p>
+      </div>
+      <div id="scene" style="width:100%;height:100%" class="hidden"></div>
+      <div class="board-banner hidden" id="banner"></div>
+      <div class="overlay hidden" id="countdown" style="position:absolute"><div class="count" id="countNum">3</div></div>
+    </main>
+    <footer class="board-foot">
+      <div class="team-panel a" id="panelA"></div>
+      <div class="team-panel b" id="panelB"></div>
+    </footer>
+  </div>
+  <script type="module" src="/static/js/board.js"></script>
+</body>
+</html>

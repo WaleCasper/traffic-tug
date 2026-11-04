@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <title>網路流量大作戰</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <div class="play">
+    <header class="topbar">
+      <span class="badge" id="teamBadge"><span class="dot" id="connDot"></span><span id="teamName">-</span></span>
+      <span class="meta"><span id="players">A 0 人 · B 0 人</span><a href="/" class="muted" id="switchTeam" style="font-size:12px">換隊</a></span>
+    </header>
+
+    <section class="lobby" id="lobby">
+      <h2>遊戲大廳</h2>
+      <p class="muted" style="margin:0;font-size:14px">主持人開放後,點進遊戲;開始時會自動進入。</p>
+      <button class="card" data-game="tug">
+        <span class="icon">🪢</span>
+        <span><h3>流量拔河</h3><p>A 隊每次拉一大包資料,B 隊每次連發好幾個小封包。比流量?還是比封包數?</p></span>
+        <span class="state">尚未開放</span>
+      </button>
+      <button class="card" data-game="heist">
+        <span class="icon">💎</span>
+        <span><h3>偷鑽石</h3><p>點一次前進一步,同時產生流量。全隊太大聲會被監視器偵測!</p></span>
+        <span class="state">尚未開放</span>
+      </button>
+    </section>
+
+    <section class="game hidden" id="game">
+      <div class="game-head">
+        <h2 id="gameTitle">-</h2>
+        <button class="back" id="backBtn">← 大廳</button>
+      </div>
+      <div class="scene" id="scene"></div>
+      <div class="result-banner hidden" id="result"></div>
+      <div class="strip">
+        <div class="stat"><b class="num" id="timeLeft">--</b><span>剩餘秒數</span></div>
+        <div class="stat"><b class="num" id="myTaps">0</b><span>我的點擊</span></div>
+        <div class="stat"><b class="num" id="teamMbps">0</b><span>本隊 Mbps</span></div>
+      </div>
+      <div class="versus" id="versus"></div>
+      <div class="tap-area">
+        <button class="tap" id="tapBtn" disabled>等待</button>
+        <div class="tap-hint" id="tapHint"></div>
+      </div>
+    </section>
+  </div>
+  <div class="overlay hidden" id="countdown"><div class="count" id="countNum">3</div><p id="countMsg"></p></div>
+  <script type="module" src="/static/js/play.js"></script>
+</body>
+</html>

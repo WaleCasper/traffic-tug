@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>網路流量大作戰</title>
+  <link rel="stylesheet" href="/static/css/app.css">
+</head>
+<body>
+  <main class="join">
+    <div>
+      <h1>網路流量大作戰</h1>
+      <p>你的每一次點擊,都會在網路上產生真實的流量。<br>請依主持人指示選擇隊伍。</p>
+    </div>
+    <button class="team-pick a" data-team="A">
+      <span>A 隊<small>左邊座位</small></span><span class="arrow">→</span>
+    </button>
+    <button class="team-pick b" data-team="B">
+      <span>B 隊<small>右邊座位</small></span><span class="arrow">→</span>
+    </button>
+    <p class="muted" id="status" style="font-size:13px">連線中…</p>
+  </main>
+  <script type="module">
+    import { loadConfig, playerId } from '/static/js/net.js';
+    const cfg = await loadConfig();
+    playerId();
+    document.getElementById('status').textContent = '選好隊伍後,就會進入遊戲大廳。';
+    for (const btn of document.querySelectorAll('.team-pick')) {
+      btn.addEventListener('click', () => {
+        const t = btn.dataset.team;
+        try { localStorage.setItem('tt_team', t); } catch (_) {}
+        // 每一隊連到自己的伺服器,點擊流量才會算在那一隊
+        location.href = `${cfg.public_urls[t]}/play?team=${t}`;
+      });
+    }
+  </script>
+</body>
+</html>
